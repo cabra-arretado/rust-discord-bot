@@ -13,6 +13,7 @@ struct Handler;
 impl EventHandler for Handler {
      async fn message(&self, ctx: Context, msg: Message) {
         println!("{} says: {}", msg.author.name, msg.content);
+        dbg!(&msg);
         if msg.content == "hello" {
            if let Err(why) = msg.channel_id.say(&ctx.http, "World!").await {
                 println!("Error sending message: {:?}", why);
